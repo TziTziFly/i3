@@ -91,7 +91,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -164,51 +164,61 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+
+##################
+#                #
+# Customisations #
+#                #
+##################
+
+
+#######################
+# Appearance Settings #
+#######################
+
 # Lockscreen:
 set $Locker i3lock-fancy
 bindsym $mod+Shift+w exec i3lock
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# (revert to `status_command i3status` for default bar)
 
-# bar {
-#   status_command i3status
-# }
-
-# bar {
-#         # status_command i3status
-#         status_command i3blocks
-# }
+# i3 status bar with conky:
 bar {
 
-        # font pango:Free Mono Bold Oblique 22
         font pango:Nimbus Mono 22
-        # position top
         status_command $HOME/.config/conky/conky-wrapper.sh
-        #status_command i3status
         colors {
         background #181b20
         statusline #9b9081
         separator #252525
 
         # # Colors           border  backgr. text
-        # focused_workspace  #141414 #CCCCCC #333333
         focused_workspace  #141414 #000000 #FF4238
-        # active_workspace   #141414 #000000 #FFFFFF
-        # inactive_workspace #141414 #181b20 #444444
         inactive_workspace #141414 #000000 #444444
-        # urgent_workspace   #141414 #181b20 #8c644c
+
+        # Other workspace settings:
+
+        # focused_workspace  
+        # active_workspace  
+        # inactive_workspace
+        # urgent_workspace 
     }
 }
 
 # Remove windows borders and title:
 default_border pixel 1
 
-# Set resolution:
-# exec --no-startup-id xrandr -s 2048x1152
+# load xorg config (sets resolution):
 exec_always --no-startup-id xsettingsd
 
-# Rebind caps to escape:
+
+#####################
+# Keyboard Settings #
+#####################
+
+# Rebind caps lock to escape:
 exec --no-startup-id xmodmap ~/.xmodmap
 
 # Pulse Audio controls:
